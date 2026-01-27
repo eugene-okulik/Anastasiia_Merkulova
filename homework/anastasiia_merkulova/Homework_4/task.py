@@ -8,13 +8,13 @@ my_dict = {
         'running': True,
         'singing': True
     },
-    'set': { 1, 2, 10, 'eight', 'zero'}
+    'set': {1, 2, 10, 'eight', 'zero'}
 }
 my_dict['list'].append('tomato')
 my_dict['list'].pop(1)
 
-my_dict['dict'] ['i am a tuple'] = False
-del my_dict['dict'] ['swimming']
+my_dict['dict']['i am a tuple'] = False
+del my_dict['dict']['swimming']
 
 my_dict['set'].add(1000)
 my_dict['set'].remove('zero')
