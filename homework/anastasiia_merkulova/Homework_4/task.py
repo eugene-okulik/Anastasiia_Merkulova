@@ -13,7 +13,7 @@ my_dict = {
 my_dict['list'].append('tomato')
 my_dict['list'].pop(1)
 
-my_dict['dict']['i am a tuple'] = False
+my_dict['dict'][('i am a tuple' ,)] = False
 del my_dict['dict']['swimming']
 
 my_dict['set'].add(1000)
