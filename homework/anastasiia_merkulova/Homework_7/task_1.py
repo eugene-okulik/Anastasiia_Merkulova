@@ -6,7 +6,6 @@ def right_number(program_number):
          break
         elif my_number != program_number:
          print('Попробуйте снова!')
-        continue
 right_number(100)
 
 
