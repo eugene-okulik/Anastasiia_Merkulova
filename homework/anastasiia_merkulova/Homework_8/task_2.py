@@ -1,13 +1,14 @@
-def progression ( ):
+def progression ():
     a = 0
     b = 1
     while True:
         yield a
         a, b = b, a + b
 
+
 count = 0
 
-for number in progression( ):
+for number in progression():
     count += 1
     if count == 5:
         print(number)
