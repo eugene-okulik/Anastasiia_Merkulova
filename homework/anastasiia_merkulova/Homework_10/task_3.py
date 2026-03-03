@@ -19,7 +19,7 @@ def calc(first, second, operation):
     if operation == '*':
         return first * second
     elif operation == '-':
-        return second - first
+        return first - second
     elif operation == '/':
         return first / second
     else:

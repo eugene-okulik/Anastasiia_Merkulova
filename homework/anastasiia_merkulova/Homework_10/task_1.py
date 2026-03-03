@@ -1,10 +1,11 @@
-def finished(func):
-    def wrapper():
-     func()
-    print('finished')
+def finish_me(func):
+    def wrapper(text):
+      func(text)
+      print('finished')
     return wrapper
 
-@finished
-def print_me():
-    print('print me')
-print_me()
+@finish_me
+def example(text):
+    print(text)
+
+example('print me')
