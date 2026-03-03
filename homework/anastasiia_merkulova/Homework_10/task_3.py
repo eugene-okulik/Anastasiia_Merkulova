@@ -27,4 +27,5 @@ def calc(first, second, operation):
     else:
         return first + second
 
+
 print(calc(first, second, '+'))

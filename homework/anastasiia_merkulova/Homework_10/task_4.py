@@ -6,7 +6,7 @@ PRICE_LIST = '''тетрадь 50 p
 пенал 300 p
 рюкзак 500 p '''
 
-new_price_list = PRICE_LIST.split( )
+new_price_list = PRICE_LIST.split()
 new_price_list = filter(lambda x: x != 'p', new_price_list)
 new_price_list = list(new_price_list)
 items = new_price_list[::2]
