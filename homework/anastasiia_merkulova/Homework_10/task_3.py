@@ -1,6 +1,7 @@
 first = int(input("Введите первое число: "))
 second = int(input("Введите второе число:"))
 
+
 def select_decorator(func):
     def wrapper(first, second, operation):
         if first < 0 or second < 0:
@@ -14,6 +15,7 @@ def select_decorator(func):
         return func(first, second, operation)
     return wrapper
 
+
 @select_decorator
 def calc(first, second, operation):
     if operation == '*':
@@ -25,4 +27,4 @@ def calc(first, second, operation):
     else:
         return first + second
 
-print(calc(first, second,'+'))
+print(calc(first, second, '+'))
