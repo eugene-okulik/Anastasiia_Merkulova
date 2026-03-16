@@ -16,9 +16,11 @@ class Flower:
                 f"lifespan={self.avg_flower_lifespan}, "
                 f"price={self.price} ")
 
+
 class Rose(Flower):
     plant_species = 'Rose'
     temp_range = '15-25°C'
+
     def __init__(self, flower_freshness, color, stem_length, avg_flower_lifespan, price):
         super().__init__(flower_freshness, color, stem_length, avg_flower_lifespan, price)
 
@@ -26,6 +28,7 @@ class Rose(Flower):
 class Tulip(Flower):
     plant_species = 'Tulip'
     temp_range = '10-20°C'
+
     def __init__(self, flower_freshness, color, stem_length, avg_flower_lifespan, price):
         super().__init__(flower_freshness, color, stem_length, avg_flower_lifespan, price)
 
@@ -50,7 +53,6 @@ class Bouquet:
             bouquet_cost += flower.price
         return bouquet_cost
 
-
     def flower_lifespan(self):
         average_lifespan = 0
         for flower in self.flowers_list:
@@ -59,22 +61,20 @@ class Bouquet:
         return avg_lifespan
 
     def sort_flower_lifespan(self):
-        return sorted(self.flowers_list,key=lambda flower: flower.avg_flower_lifespan)
+        return sorted(self.flowers_list, key=lambda flower: flower.avg_flower_lifespan)
 
     def sort_flower_color(self):
-        return sorted(self.flowers_list,key=lambda flower: flower.color)
-
+        return sorted(self.flowers_list, key=lambda flower: flower.color)
 
     def sort_flower_stem_length(self):
-        return sorted(self.flowers_list,key=lambda flower: flower.stem_length)
-
+        return sorted(self.flowers_list, key=lambda flower: flower.stem_length)
 
     def sort_flower_price(self):
-        return sorted(self.flowers_list,key=lambda flower: flower.price)
-
+        return sorted(self.flowers_list, key=lambda flower: flower.price)
 
     def filter_by_avg_lifespan(self, avg_lifespan):
         return list(filter(lambda flower: flower.avg_flower_lifespan == avg_lifespan, self.flowers_list))
+
 
 bouquet = Bouquet(flower_list)
 print(bouquet.get_bouquet_cost())
