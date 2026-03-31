@@ -1,0 +1,81 @@
+1.  Mar-24 10:44:10	SQL / User	INSERT INTO students (name, second_name) VALUES ('Anastasiia', 'Merkulova')
+0.444s	1	Success	st-onl	SQLEditor <Script.sql>
+
+2. Mar-24 11:26:43	SQL / User	INSERT INTO books (title, taken_by_student_id)
+VALUES ('Liebesgeschichte', 22521)	0.059s	1	Success	st-onl	SQLEditor <Script.sql>
+
+2. Mar-24 11:29:27	SQL / User	INSERT INTO books (title, taken_by_student_id)
+VALUES ('Harry Potter and the Chamber of Secrets', 22521)	0.058s	1	Success	st-onl	SQLEditor <Script.sql>
+
+2. Mar-24 11:31:02	SQL / User	INSERT INTO books (title, taken_by_student_id)
+VALUES ('Letter from Unkown Woman', 22521)	0.084s	1	Success	st-onl	SQLEditor <Script.sql>
+
+2. Mar-24 11:32:27	SQL / User	INSERT INTO books (title, taken_by_student_id)
+VALUES ('The World of Yesterday', 22521)	0.056s	1	Success	st-onl	SQLEditor <Script.sql>
+
+3. Mar-24 11:40:53	SQL / User	INSERT INTO `groups` (id, title, start_date, end_date)
+VALUES (22521, 'AQA tester', 'feb 2026', 'jul 2026')	0.061s	1	Success	st-onl	SQLEditor <Script.sql>
+
+3. UPDATE students
+SET group_id = 22521
+WHERE second_name = 'Merkulova'
+
+
+4. Mar-24 12:25:53	SQL / User	INSERT INTO subjects (title) VALUES ('Pythin for AQA')
+0.083s	1	Success	st-onl	SQLEditor <Script.sql>
+
+Mar-24 12:30:54	SQL / User	UPDATE subjects SET title = 'Python for AQA' WHERE id = 22522
+0.078s	1	Success	st-onl	SQLEditor <Script.sql>
+
+
+4. Mar-24 12:32:27	SQL / User	INSERT INTO subjects (title) VALUES ('English for QA (B2)')
+0.062s	1	Success	st-onl	SQLEditor <Script.sql>
+
+5. Mar-24 12:40:12	SQL / User	INSERT INTO lessons (title, subject_id) VALUES ('Python for beginners', 22522)
+0.064s	1	Success	st-onl	SQLEditor <Script.sql>
+
+5. Mar-24 12:41:06	SQL / User	INSERT INTO lessons (title, subject_id) VALUES ('Python for advanced', 22522)
+0.059s	1	Success	st-onl	SQLEditor <Script.sql>
+
+5. Mar-24 12:43:18	SQL / User	INSERT INTO lessons (title, subject_id) VALUES ('English for beginners', 22523)
+0.058s	1	Success	st-onl	SQLEditor <Script.sql>
+
+5. Mar-24 12:43:55	SQL / User	INSERT INTO lessons (title, subject_id) VALUES ('English for advanced', 22523)
+0.058s	1	Success	st-onl	SQLEditor <Script.sql>
+
+
+6. Mar-24 12:58:39	SQL / User	INSERT INTO marks (value, lesson_id, student_id)
+VALUES (10, 75639, 22521)	0.058s	1	Success	st-onl	SQLEditor <Script.sql>
+
+6. Mar-24 12:59:16	SQL / User	INSERT INTO marks (value, lesson_id, student_id)
+VALUES (8, 75640, 22521)	0.061s	1	Success	st-onl	SQLEditor <Script.sql>
+
+6. Mar-24 12:59:37	SQL / User	INSERT INTO marks (value, lesson_id, student_id)
+VALUES (11, 75641, 22521)	0.067s	1	Success	st-onl	SQLEditor <Script.sql>
+
+6. Mar-24 13:00:01	SQL / User	INSERT INTO marks (value, lesson_id, student_id)
+VALUES (8, 75642, 22521)	0.066s	1	Success	st-onl	SQLEditor <Script.sql>
+
+
+1. Mar-25 12:26:34	SQL / User	SELECT * FROM marks
+WHERE student_id = 22521
+LIMIT 0, 200	0.04s	4	Success	st-onl	SQLEditor <Script.sql>
+
+2. Mar-25 12:28:03	SQL / User	SELECT * FROM books
+WHERE taken_by_student_id = 22521
+LIMIT 0, 200	0.044s	4	Success	st-onl	SQLEditor <Script.sql>
+
+3.Mar-31 10:52:12	SQL / User	SELECT *
+FROM students
+LEFT JOIN books
+ON students.id = books.taken_by_student_id
+LEFT JOIN `groups`
+ON students.group_id = groups.id
+LEFT JOIN marks
+ON students.id = marks.student_id
+LEFT JOIN lessons
+ON marks.lesson_id = lessons.id
+LEFT JOIN subjects
+ON lessons.subject_id = subjects.id
+WHERE second_name = 'Merkulova'
+0.035s	16	Success	st-onl	SQLEditor <Script.sql>
