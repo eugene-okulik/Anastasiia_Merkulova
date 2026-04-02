@@ -17,6 +17,7 @@ cursor.execute("INSERT INTO students(name, second_name) VALUES (%s, %s)",
 (name, second_name)
 )
 student_id = cursor.lastrowid
+print(f"student_id: {student_id}, name: {name}, second_name: {second_name}")
 
 title = input('Enter group title: ')
 start_date = input('Enter start date: ')
@@ -25,6 +26,7 @@ cursor.execute("INSERT INTO `groups`(title, start_date, end_date) VALUES (%s, %s
 (title, start_date, end_date)
 )
 group_id = cursor.lastrowid
+print(f"group_id: {group_id}, title: {title}, start_date: {start_date}, end_date: {end_date}")
 
 books_count = int(input('Enter a number of books: '))
 taken_by_student_id = student_id
@@ -34,6 +36,7 @@ for book in range(books_count):
 (book_title, taken_by_student_id )
 )
     book_id = cursor.lastrowid
+    print(f"book_id: {book_id}, title: {book_title}, taken_by_student_id: {taken_by_student_id}")
 
 cursor.execute("UPDATE students SET group_id = %s WHERE id = %s",
 (group_id, student_id)
@@ -44,18 +47,14 @@ subjects_count = int(input('Enter a number of subjects: '))
 for subject in range(subjects_count):
     subject_title = input('Enter subject title: ')
     cursor.execute("INSERT INTO subjects (title) VALUES (%s)",
-    (title,)
+    (subject_title,)
     )
     subject_id = cursor.lastrowid
-
-    print(f"student_id: {student_id}, name: {name}, second_name: {second_name}")
-    print(f"group_id: {group_id}, title: {title}, start_date: {start_date}, end_date: {end_date}")
-    print(f"book_id: {book_id}, title: {book_title}, taken_by_student_id: {taken_by_student_id}")
 
     for lesson in range(2):
         lesson_title = input(f"Enter lesson title {subject_title}: ")
         cursor.execute("INSERT INTO lessons(title, subject_id) VALUES (%s, %s)",
-        (title,subject_id)
+        (lesson_title,subject_id)
         )
         lesson_id = cursor.lastrowid
 
@@ -65,7 +64,8 @@ for subject in range(subjects_count):
         )
         marks_id = cursor.lastrowid
         print(f"marks_id: {marks_id}, value: {value}, lesson_id: {lesson_id}, "
-              f"lesson_title: {lesson_title}, student_id: {student_id}")
+              f"subject_id:{subject_id}, lesson_title: {lesson_title}, "
+              f"student_id: {student_id}")
 
 db.commit()
 db.close()
