@@ -35,8 +35,8 @@ taken_by_student_id = student_id
 for book in range(books_count):
     book_title = input('Enter book title: ')
     cursor.execute(
-    "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)",
-    (book_title, taken_by_student_id)
+        "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)",
+        (book_title, taken_by_student_id)
     )
     book_id = cursor.lastrowid
     print(f"book_id: {book_id}, title: {book_title}, taken_by_student_id: {taken_by_student_id}")
