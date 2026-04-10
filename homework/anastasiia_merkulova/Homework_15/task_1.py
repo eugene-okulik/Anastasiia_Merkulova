@@ -35,13 +35,13 @@ taken_by_student_id = student_id
 
 books = []
 for book in range(books_count):
-    title = input(f"Enter book title: ")
+    title = input("Enter book title: ")
     books.append((title, taken_by_student_id))
     print(f"title: {title}, taken_by_student_id: {taken_by_student_id}")
 
 cursor.executemany(
-"INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)",
-books
+    "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)",
+    books
 )
 book_id = cursor.lastrowid
 
@@ -71,7 +71,7 @@ for subject in range(subjects_count):
 
         marks = []
         value = int(input(f"Enter mark for {lesson_title}:  "))
-        cursor.executemany (
+        cursor.executemany(
             "INSERT INTO marks(value, lesson_id, student_id) VALUES (%s, %s, %s)",
             [(value, lesson_id, student_id)]
         )
