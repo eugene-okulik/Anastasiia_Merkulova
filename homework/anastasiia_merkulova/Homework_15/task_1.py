@@ -32,14 +32,19 @@ print(f"group_id: {group_id}, title: {title}, start_date: {start_date}, end_date
 
 books_count = int(input('Enter a number of books: '))
 taken_by_student_id = student_id
+
+books = []
 for book in range(books_count):
-    book_title = input('Enter book title: ')
-    cursor.execute(
-        "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)",
-        (book_title, taken_by_student_id)
-    )
-    book_id = cursor.lastrowid
-    print(f"book_id: {book_id}, title: {book_title}, taken_by_student_id: {taken_by_student_id}")
+    title = input(f"Enter book title: ")
+    books.append((title, taken_by_student_id))
+    print(f"title: {title}, taken_by_student_id: {taken_by_student_id}")
+
+cursor.executemany(
+"INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)",
+books
+)
+book_id = cursor.lastrowid
+
 
 cursor.execute(
     "UPDATE students SET group_id = %s WHERE id = %s",
@@ -64,15 +69,49 @@ for subject in range(subjects_count):
         )
         lesson_id = cursor.lastrowid
 
+        marks = []
         value = int(input(f"Enter mark for {lesson_title}:  "))
-        cursor.execute(
+        cursor.executemany (
             "INSERT INTO marks(value, lesson_id, student_id) VALUES (%s, %s, %s)",
-            (value, lesson_id, student_id)
+            [(value, lesson_id, student_id)]
         )
         marks_id = cursor.lastrowid
+
         print(f"marks_id: {marks_id}, value: {value}, lesson_id: {lesson_id}, "
               f"subject_id:{subject_id}, lesson_title: {lesson_title}, "
               f"student_id: {student_id}")
+
+
+cursor.execute(
+    """
+    SELECT
+        students.id AS student_id,
+        students.name AS student_name,
+        students.second_name AS student_second_name,
+        `groups`.title AS group_title,
+        `groups`.start_date AS group_start_date,
+        `groups`.end_date AS group_end_date,
+        books.title AS book_title,
+        books.taken_by_student_id AS book_taken_by_student_id,
+        subjects.title AS subject_title,
+        lessons.title AS lesson_title,
+        marks.value AS mark_value
+    FROM students
+    JOIN `groups` ON students.group_id = `groups`.id
+    LEFT JOIN books ON students.id = books.taken_by_student_id
+    LEFT JOIN marks ON students.id = marks.student_id
+    LEFT JOIN lessons ON lessons.id = marks.lesson_id
+    LEFT JOIN subjects ON lessons.subject_id = subjects.id
+    WHERE students.id = %s
+    """,
+    (student_id,)
+)
+
+result = cursor.fetchall()
+
+for row in result:
+    print(row)
+
 
 db.commit()
 db.close()
