@@ -43,7 +43,6 @@ cursor.executemany(
     "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)",
     books
 )
-book_id = cursor.lastrowid
 
 
 cursor.execute(
@@ -77,10 +76,24 @@ for subject in range(subjects_count):
         )
         marks_id = cursor.lastrowid
 
-        print(f"marks_id: {marks_id}, value: {value}, lesson_id: {lesson_id}, "
-              f"subject_id:{subject_id}, lesson_title: {lesson_title}, "
-              f"student_id: {student_id}")
+cursor.execute(
+    "SELECT * FROM marks WHERE student_id = %s",
+    (student_id,)
+)
 
+result = cursor.fetchall()
+
+print(result)
+
+
+cursor.execute(
+    "SELECT * FROM books WHERE taken_by_student_id = %s",
+    (student_id, )
+)
+
+result = cursor.fetchall()
+
+print(result)
 
 cursor.execute(
     """
