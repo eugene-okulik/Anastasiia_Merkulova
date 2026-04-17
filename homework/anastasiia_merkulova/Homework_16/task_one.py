@@ -43,13 +43,13 @@ with open('../../eugene_okulik/Lesson_16/hw_data/data.csv', newline='') as csv_f
         AND marks.value = %s
             ''',
             (
-            row['name'],
-            row['second_name'],
-            row['group_title'],
-            row['book_title'],
-            row['subject_title'],
-            row['lesson_title'],
-            row['mark_value'],
+        row['name'],
+        row['second_name'],
+        row['group_title'],
+        row['book_title'],
+        row['subject_title'],
+        row['lesson_title'],
+        row['mark_value'],
             )
         )
         result = cursor.fetchall()
