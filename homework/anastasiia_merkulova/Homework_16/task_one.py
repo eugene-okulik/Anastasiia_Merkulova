@@ -15,11 +15,11 @@ db = mysql.connect(
 
 cursor = db.cursor(dictionary=True)
 
-with open ('../../eugene_okulik/Lesson_16/hw_data/data.csv', newline='') as csv_file:
+with open('../../eugene_okulik/Lesson_16/hw_data/data.csv', newline='') as csv_file:
     file_data = csv.DictReader(csv_file)
     for row in file_data:
         cursor.execute(
-        '''
+            '''
         SELECT
         students.name AS student_name,
         students.second_name AS second_name,
@@ -41,17 +41,17 @@ with open ('../../eugene_okulik/Lesson_16/hw_data/data.csv', newline='') as csv_
         AND subjects.title = %s
         AND lessons.title = %s
         AND marks.value = %s
-        ''',
-        (
-        row['name'],
-        row['second_name'],
-        row['group_title'],
-        row['book_title'],
-        row['subject_title'],
-        row['lesson_title'],
-        row['mark_value'],
+            ''',
+            (
+            row['name'],
+            row['second_name'],
+            row['group_title'],
+            row['book_title'],
+            row['subject_title'],
+            row['lesson_title'],
+            row['mark_value'],
+            )
         )
-    )
         result = cursor.fetchall()
         if result:
             print(result)
