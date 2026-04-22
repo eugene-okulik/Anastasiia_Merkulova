@@ -15,7 +15,10 @@ db = mysql.connect(
 
 cursor = db.cursor(dictionary=True)
 
-with open('../../eugene_okulik/Lesson_16/hw_data/data.csv', newline='') as csv_file:
+base_path = os.path.dirname(__file__)
+file_path = os.path.dirname(os.path.dirname(base_path))
+anastasiia_path = os.path.join(file_path, 'eugene_okulik', 'lesson_16', 'hw_data', 'data.csv')
+with open(anastasiia_path, newline='') as csv_file:
     file_data = csv.DictReader(csv_file)
     for row in file_data:
         cursor.execute(
