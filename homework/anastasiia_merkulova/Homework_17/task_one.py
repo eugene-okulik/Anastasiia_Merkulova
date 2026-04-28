@@ -9,6 +9,8 @@ parser.add_argument("--full", action="store_true", help="text for search")
 args = parser.parse_args()
 
 path = args.file
+
+
 def read_file(path):
     block = {}
     current_key = None
@@ -16,18 +18,21 @@ def read_file(path):
         all_files = os.listdir(path)
         for file in all_files:
             file_name = f"Название файла: {file}"
-            all_files_path = os.path.join(path,file)
+            all_files_path = os.path.join(path, file)
             if os.path.isfile(all_files_path):
                 with open(all_files_path, 'r') as content_file:
                     for line in content_file.readlines():
                         if re.match(r"^\d{4}-\d{2}-\d{2}", line):
                             current_key = line[:23]
-                            block[current_key] = file_name +  '\n' + line[24:]
+                            block[current_key] = file_name + '\n' + line[24:]
                         else:
                             if current_key:
                                 block[current_key] += line
     return block
+
+
 block = read_file(path)
+
 
 def find_text(block):
     if args.full:
@@ -51,17 +56,3 @@ def find_text(block):
 
 
 find_text(block)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
