@@ -22,7 +22,7 @@ def new_post():
             "test": "test"
         }
     }
-    headers = {'Content-Type':'application/json'}
+    headers = {'Content-Type': 'application/json'}
     response = requests.post(
         'http://objapi.course.qa-practice.com/object',
         json=body,
