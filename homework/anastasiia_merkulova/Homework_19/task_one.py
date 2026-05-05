@@ -17,13 +17,14 @@ def one_post():
 
 def new_post():
     body = {
-    "name":"test",
-    "data":{
-    "test":"test"
+        "name": "test",
+        "data": {
+        "test": "test"
     }
     }
     headers = {'Content-Type':'application/json'}
-    response = requests.post('http://objapi.course.qa-practice.com/object',
+    response = requests.post(
+        'http://objapi.course.qa-practice.com/object',
         json=body,
         headers=headers
     )
@@ -38,13 +39,14 @@ def clear(post_id):
 def put_a_post():
     post_id = new_post()
     body = {
-        "name":"new_test",
+        "name": "new_test",
         "data": {
-        "test":"new_test"
+        "test": "new_test"
     }
     }
     headers = {'Content-Type' : 'application/json'}
-    response = requests.put(f'http://objapi.course.qa-practice.com/object/{post_id}',
+    response = requests.put(
+        f'http://objapi.course.qa-practice.com/object/{post_id}',
         json=body,
         headers=headers
     ).json()
@@ -55,10 +57,11 @@ def put_a_post():
 def patch_a_post():
     post_id = new_post()
     body = {
-        "name":"new_test_one"
+        "name": "new_test_one"
     }
     headers = {'Content-Type':'application/json'}
-    response = requests.patch(f'http://objapi.course.qa-practice.com/object/{post_id}',
+    response = requests.patch(
+    f'http://objapi.course.qa-practice.com/object/{post_id}',
     json=body,
     headers=headers
     ).json()
