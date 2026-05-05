@@ -19,8 +19,8 @@ def new_post():
     body = {
         "name": "test",
         "data": {
-        "test": "test"
-    }
+            "test": "test"
+        }
     }
     headers = {'Content-Type':'application/json'}
     response = requests.post(
@@ -41,10 +41,10 @@ def put_a_post():
     body = {
         "name": "new_test",
         "data": {
-        "test": "new_test"
+            "test": "new_test"
+        }
     }
-    }
-    headers = {'Content-Type' : 'application/json'}
+    headers = {'Content-Type': 'application/json'}
     response = requests.put(
         f'http://objapi.course.qa-practice.com/object/{post_id}',
         json=body,
@@ -54,16 +54,17 @@ def put_a_post():
     print(response)
     clear(post_id)
 
+
 def patch_a_post():
     post_id = new_post()
     body = {
         "name": "new_test_one"
     }
-    headers = {'Content-Type':'application/json'}
+    headers = {'Content-Type': 'application/json'}
     response = requests.patch(
-    f'http://objapi.course.qa-practice.com/object/{post_id}',
-    json=body,
-    headers=headers
+        f'http://objapi.course.qa-practice.com/object/{post_id}',
+        json=body,
+        headers=headers
     ).json()
     assert response['name'] == "new_test_one"
     print(response)
@@ -73,7 +74,7 @@ def patch_a_post():
 def delete_a_post():
     post_id = new_post()
     response = requests.delete(f'http://objapi.course.qa-practice.com/object/{post_id}')
-    assert response.status_code in [200,204], 'Delete failed'
+    assert response.status_code in [200, 204], 'Delete failed'
     print(response.status_code)
 
 
