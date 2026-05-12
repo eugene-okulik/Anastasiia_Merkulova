@@ -2,6 +2,7 @@ import requests
 
 import pytest
 
+
 @pytest.fixture(scope='session', autouse=True)
 def write_start_test():
     print('Start test')
@@ -27,19 +28,19 @@ def post_id():
 
 
 def create_new_post():
-        body = {
-            "name": "test",
-            "data": {
-                "test": "test"
-            }
+    body = {
+        "name": "test",
+        "data": {
+            "test": "test"
         }
-        headers = {'Content-Type': 'application/json'}
-        response = requests.post(
-            'http://objapi.course.qa-practice.com/object',
-            json=body,
-            headers=headers
-        )
-        return response.json()['id']
+    }
+    headers = {'Content-Type': 'application/json'}
+    response = requests.post(
+        'http://objapi.course.qa-practice.com/object',
+        json=body,
+        headers=headers
+    )
+    return response.json()['id']
 
 
 def clear(post_id):
@@ -92,6 +93,7 @@ def test_put_a_post(post_id):
         headers=headers
     ).json()
     assert response['name'] == "new_test"
+
 
 @pytest.mark.medium
 def test_patch_a_post(post_id):
