@@ -13,12 +13,8 @@ def write_start_test():
 @pytest.fixture(autouse=True)
 def before_test():
     print('Before test')
-
-
-@pytest.fixture(autouse=True)
-def after_test():
+    yield
     print('After test')
-
 
 @pytest.fixture
 def post_id():
@@ -113,5 +109,3 @@ def test_delete_a_post(post_id):
     response = requests.delete(f'http://objapi.course.qa-practice.com/object/{post_id}')
     assert response.status_code in [200, 204], 'Delete failed'
 
-
-test_all_posts()
