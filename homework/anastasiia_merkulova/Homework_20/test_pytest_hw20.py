@@ -16,6 +16,7 @@ def before_test():
     yield
     print('After test')
 
+
 @pytest.fixture
 def post_id():
     create_id = create_new_post()
@@ -108,4 +109,3 @@ def test_patch_a_post(post_id):
 def test_delete_a_post(post_id):
     response = requests.delete(f'http://objapi.course.qa-practice.com/object/{post_id}')
     assert response.status_code in [200, 204], 'Delete failed'
-
