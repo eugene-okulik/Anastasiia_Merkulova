@@ -34,7 +34,6 @@ def new_post():
     )
     return response.json()["id"]
 
-clear(post_id)
 
 def put_a_post():
     post_id = new_post()
