@@ -6,6 +6,10 @@ def all_posts():
     assert len(response) == 1, 'Not all posts returned'
     print(response)
 
+def clear(post_id):
+    response = requests.delete(f'http://objapi.course.qa-practice.com/object/{post_id}')
+    assert response.status_code in [200, 204], 'Delete failed'
+
 
 def one_post():
     post_id = new_post()
@@ -30,11 +34,7 @@ def new_post():
     )
     return response.json()["id"]
 
-
-def clear(post_id):
-    response = requests.delete(f'http://objapi.course.qa-practice.com/object/{post_id}')
-    assert response.status_code in [200, 204], 'Delete failed'
-
+clear(post_id)
 
 def put_a_post():
     post_id = new_post()

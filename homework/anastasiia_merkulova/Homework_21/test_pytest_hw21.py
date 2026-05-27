@@ -49,7 +49,6 @@ def clear(post_id):
         assert response.status_code in [200, 204, 404], 'Delete failed'
 
 
-
 @allure.feature('Posts')
 @allure.story('Get')
 @allure.title('Get all posts')
@@ -57,6 +56,7 @@ def test_all_posts():
     response = requests.get('http://objapi.course.qa-practice.com/object').json()
     with allure.step('Get all posts'):
         assert len(response) == 1, 'Not all posts returned'
+
 
 @allure.feature('Posts')
 @allure.story('Get')
@@ -75,8 +75,6 @@ def test_one_post(post_id):
         {"name": "test_3", "data": {"test": "three"}},
     ]
 )
-
-
 @allure.feature('Posts')
 @allure.story('Create')
 @allure.title('Create a new post with valid data')
