@@ -2,7 +2,7 @@ import pytest
 
 import requests
 
-from endpoints.create_post import CreatePost, GetPost
+from endpoints.create_post import CreatePost, GetPosts, GetOnePost, PutPost, PatchPost, DeletePost
 
 
 @pytest.fixture
@@ -11,7 +11,7 @@ def create_post_endpoint():
 
 
 def clear(post_id):
-    requests.delete(f'https://api.course.qa-practice.com/v1/posts/{post_id}')
+    requests.delete(f'http://objapi.course.qa-practice.com/object/{post_id}')
 
 
 @pytest.fixture
@@ -32,7 +32,20 @@ def created_post(create_post_endpoint):
 
 @pytest.fixture
 def get_post_endpoint():
-    return GetPost()
+    return GetPosts()
 
+@pytest.fixture
+def get_one_post_endpoint():
+    return GetOnePost()
 
+@pytest.fixture
+def put_post_endpoint():
+    return PutPost()
 
+@pytest.fixture
+def patch_post_endpoint():
+    return PatchPost()
+
+@pytest.fixture
+def delete_post_endpoint():
+    return DeletePost()
