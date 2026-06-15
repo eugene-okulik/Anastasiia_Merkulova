@@ -79,7 +79,7 @@ def test_get_all_posts(get_post_endpoint, created_post):
 @allure.story('Get one post')
 @allure.title('Check response for getting one post')
 @pytest.mark.critical
-def test_get_one_post(get_one_post_endpoint,created_post):
+def test_get_one_post(get_one_post_endpoint, created_post):
     get_one_post_endpoint.get_one_post(created_post)
     with allure.step('Get one post by id'):
         assert get_one_post_endpoint.response.status_code == 200
@@ -94,7 +94,8 @@ def test_put_a_post(put_post_endpoint, created_post):
     data = {
         "name": "Anna",
         "data": {
-        "data": "test_four"}
+        "data": "test_four"
+        }
     }
     put_post_endpoint.update_a_post(data, created_post)
     with allure.step('Update a post'):
