@@ -94,9 +94,9 @@ def test_put_a_post(put_post_endpoint, created_post):
     data = {
         "name": "Anna",
         "data": {
-        "data": "test_four"
+            "data": "test_four"
+        }
     }
-}
     put_post_endpoint.update_a_post(data, created_post)
     with allure.step('Update a post'):
         assert put_post_endpoint.response.status_code == 200
