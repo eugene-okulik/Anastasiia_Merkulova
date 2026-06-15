@@ -27,8 +27,7 @@ VALID_DATA = {
 
 INVALID_DATA = (
     {
-        "name": 123
-},
+        "name": 123},
     {
         "data": {
             "data": {}
@@ -48,7 +47,7 @@ def test_create_post(create_post_endpoint, data):
         assert create_post_endpoint.response.status_code == 200
         assert create_post_endpoint.json['name'] == data['name']
         assert create_post_endpoint.json['data'] == data['data']
-        assert isinstance (create_post_endpoint.json['id'], int)
+        assert isinstance(create_post_endpoint.json['id'], int)
 
 
 @allure.feature('Posts')
@@ -95,8 +94,7 @@ def test_put_a_post(put_post_endpoint, created_post):
     data = {
         "name": "Anna",
         "data": {
-        "data": "test_four"
-        }
+        "data": "test_four"}
     }
     put_post_endpoint.update_a_post(data, created_post)
     with allure.step('Update a post'):

@@ -44,7 +44,7 @@ class GetOnePost:
     json = None
     headers = {'Content-Type': 'application/json'}
 
-    def get_one_post(self,post_id, headers=None):
+    def get_one_post(self, post_id, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.get(
             f'{self.url}/{post_id}',
@@ -62,7 +62,7 @@ class PutPost:
     json = None
     headers = {'Content-Type': 'application/json'}
 
-    def update_a_post(self, body,post_id, headers=None):
+    def update_a_post(self, body, post_id, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.put(
             f'{self.url}/{post_id}',
@@ -80,7 +80,6 @@ class PatchPost:
     response = None
     json = None
     headers = {'Content-Type': 'application/json'}
-
 
     def update_a_part_of_post(self, body, post_id, headers=None):
         headers = headers if headers else self.headers
