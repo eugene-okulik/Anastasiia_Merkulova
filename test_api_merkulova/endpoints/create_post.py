@@ -7,8 +7,7 @@ class CreatePost:
     json = None
     headers = {'Content-Type': 'application/json'}
 
-
-    def new_post(self, body, headers = None):
+    def new_post(self, body, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.post(
             self.url,
@@ -27,8 +26,7 @@ class GetPosts:
     json = None
     headers = {'Content-Type': 'application/json'}
 
-
-    def get_posts(self, headers = None):
+    def get_posts(self, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.get(
             self.url,
@@ -46,8 +44,7 @@ class GetOnePost:
     json = None
     headers = {'Content-Type': 'application/json'}
 
-
-    def get_one_post(self,post_id, headers = None):
+    def get_one_post(self,post_id, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.get(
             f'{self.url}/{post_id}',
@@ -65,8 +62,7 @@ class PutPost:
     json = None
     headers = {'Content-Type': 'application/json'}
 
-
-    def update_a_post(self, body,post_id, headers = None):
+    def update_a_post(self, body,post_id, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.put(
             f'{self.url}/{post_id}',
@@ -86,7 +82,7 @@ class PatchPost:
     headers = {'Content-Type': 'application/json'}
 
 
-    def update_a_part_of_post(self, body, post_id, headers = None):
+    def update_a_part_of_post(self, body, post_id, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.patch(
             f'{self.url}/{post_id}',
@@ -105,7 +101,7 @@ class DeletePost:
     json = None
     headers = {'Content-Type': 'application/json'}
 
-    def delete_a_post(self, post_id, headers = None):
+    def delete_a_post(self, post_id, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.delete(
             f'{self.url}/{post_id}',

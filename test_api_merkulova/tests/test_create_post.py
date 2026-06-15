@@ -14,14 +14,14 @@ VALID_DATA = {
     "name": "Mark",
     "data": {
         "data": {
-            "test_two" : "test_two"
+            "test_two": "test_two"
         }
     }
 }, {
     "name": "Anton",
     "data": {
         "data": {
-            "test_three" : "test_three"        }
+            "test_three": "test_three"}
     }
 }
 
@@ -37,7 +37,7 @@ INVALID_DATA = (
 )
 
 
-@allure.feature('Posts') #POST
+@allure.feature('Posts')
 @allure.story('Create post with valid data')
 @allure.title('Check response for creating a post with valid data')
 @pytest.mark.critical
@@ -51,11 +51,11 @@ def test_create_post(create_post_endpoint, data):
         assert isinstance (create_post_endpoint.json['id'], int)
 
 
-@allure.feature('Posts') #POST
+@allure.feature('Posts')
 @allure.story('Create post with invalid data')
 @allure.title('Check response for creating a post with invalid data')
 @pytest.mark.high
-@pytest.mark.parametrize("data", INVALID_DATA )
+@pytest.mark.parametrize("data", INVALID_DATA)
 def test_create_post_invalid_data(create_post_endpoint, data):
     print("\nDATA:", data)
     create_post_endpoint.new_post(body=data)
@@ -65,7 +65,7 @@ def test_create_post_invalid_data(create_post_endpoint, data):
         assert "id" not in create_post_endpoint.json
 
 
-@allure.feature('Posts') #GET
+@allure.feature('Posts')
 @allure.story('Get all posts')
 @allure.title('Check response for getting all posts')
 @pytest.mark.critical
@@ -76,7 +76,7 @@ def test_get_all_posts(get_post_endpoint, created_post):
         assert len(get_post_endpoint.json) > 0
 
 
-@allure.feature('Posts') #GET
+@allure.feature('Posts')
 @allure.story('Get one post')
 @allure.title('Check response for getting one post')
 @pytest.mark.critical
@@ -87,7 +87,7 @@ def test_get_one_post(get_one_post_endpoint,created_post):
         assert get_one_post_endpoint.json["id"] == created_post
 
 
-@allure.feature('Posts') #PUT
+@allure.feature('Posts')
 @allure.story('Update a post')
 @allure.title('Check response for updating the post')
 @pytest.mark.critical

@@ -17,10 +17,10 @@ def clear(post_id):
 @pytest.fixture
 def created_post(create_post_endpoint):
     body = {
-        "name" : "test_one",
-        "data" : {
-            "data" : {
-                "test_one" : "test_one"
+        "name": "test_one",
+        "data": {
+            "data": {
+                "test_one": "test_one"
             }
         }
     }
@@ -34,17 +34,21 @@ def created_post(create_post_endpoint):
 def get_post_endpoint():
     return GetPosts()
 
+
 @pytest.fixture
 def get_one_post_endpoint():
     return GetOnePost()
+
 
 @pytest.fixture
 def put_post_endpoint():
     return PutPost()
 
+
 @pytest.fixture
 def patch_post_endpoint():
     return PatchPost()
+
 
 @pytest.fixture
 def delete_post_endpoint():
