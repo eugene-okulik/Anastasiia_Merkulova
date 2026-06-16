@@ -1,17 +1,13 @@
-import requests
-
-
-class CreateObject:
+class GetOneObject:
     url = 'http://objapi.course.qa-practice.com/object'
     response = None
     json = None
     headers = {'Content-Type': 'application/json'}
 
-    def new_object(self, body, headers=None):
+    def get_one_object(self, post_id, headers=None):
         headers = headers if headers else self.headers
-        self.response = requests.post(
-            self.url,
-            json=body,
+        self.response = requests.get(
+            f'{self.url}/{post_id}',
             headers=headers
         )
         try:

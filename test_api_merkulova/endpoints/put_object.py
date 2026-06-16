@@ -1,16 +1,13 @@
-import requests
-
-
-class CreateObject:
+class PutObject:
     url = 'http://objapi.course.qa-practice.com/object'
     response = None
     json = None
     headers = {'Content-Type': 'application/json'}
 
-    def new_object(self, body, headers=None):
+    def update_object(self, body, post_id, headers=None):
         headers = headers if headers else self.headers
-        self.response = requests.post(
-            self.url,
+        self.response = requests.put(
+            f'{self.url}/{post_id}',
             json=body,
             headers=headers
         )

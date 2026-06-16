@@ -41,13 +41,13 @@ INVALID_DATA = (
 @allure.title('Check response for creating a post with valid data')
 @pytest.mark.critical
 @pytest.mark.parametrize("data", VALID_DATA)
-def test_create_post(create_post_endpoint, data):
-    create_post_endpoint.new_post(body=data)
+def test_create_object(create_object_endpoint, data):
+    create_object_endpoint.new_post(body=data)
     with allure.step('Create a new post'):
-        assert create_post_endpoint.response.status_code == 200
-        assert create_post_endpoint.json['name'] == data['name']
-        assert create_post_endpoint.json['data'] == data['data']
-        assert isinstance(create_post_endpoint.json['id'], int)
+        assert create_object_endpoint.response.status_code == 200
+        assert create_object_endpoint.json['name'] == data['name']
+        assert create_object_endpoint.json['data'] == data['data']
+        assert isinstance(create_object_endpoint.json['id'], int)
 
 
 @allure.feature('Posts')
@@ -55,52 +55,52 @@ def test_create_post(create_post_endpoint, data):
 @allure.title('Check response for creating a post with invalid data')
 @pytest.mark.high
 @pytest.mark.parametrize("data", INVALID_DATA)
-def test_create_post_invalid_data(create_post_endpoint, data):
+def test_create_object_invalid_data(create_post_endpoint, data):
     print("\nDATA:", data)
-    create_post_endpoint.new_post(body=data)
-    print("STATUS:", create_post_endpoint.response.status_code)
+    create_object_endpoint.new_object(body=data)
+    print("STATUS:", create_object_endpoint.response.status_code)
     with allure.step('Create a new post with invalid data'):
-        assert create_post_endpoint.response.status_code == 400
-        assert "id" not in create_post_endpoint.json
+        assert create_object_endpoint.response.status_code == 400
+        assert "id" not in create_object_endpoint.json
 
 
 @allure.feature('Posts')
 @allure.story('Get all posts')
 @allure.title('Check response for getting all posts')
 @pytest.mark.critical
-def test_get_all_posts(get_post_endpoint, created_post):
-    get_post_endpoint.get_posts()
+def test_get_all_objects(get_objects_endpoint, created_object):
+    get_objects_endpoint.get_objects()
     with allure.step('Get all posts'):
-        assert get_post_endpoint.response.status_code == 200
-        assert len(get_post_endpoint.json) > 0
+        assert get_objects_endpoint.response.status_code == 200
+        assert len(get_objects_endpoint.json) > 0
 
 
 @allure.feature('Posts')
 @allure.story('Get one post')
 @allure.title('Check response for getting one post')
 @pytest.mark.critical
-def test_get_one_post(get_one_post_endpoint, created_post):
-    get_one_post_endpoint.get_one_post(created_post)
+def test_get_one_object(get_one_object_endpoint, created_object):
+    get_one_object_endpoint.get_one_post(created_object)
     with allure.step('Get one post by id'):
-        assert get_one_post_endpoint.response.status_code == 200
-        assert get_one_post_endpoint.json["id"] == created_post
+        assert get_one_object_endpoint.response.status_code == 200
+        assert get_one_object_endpoint.json["id"] == created_object
 
 
 @allure.feature('Posts')
 @allure.story('Update a post')
 @allure.title('Check response for updating the post')
 @pytest.mark.critical
-def test_put_a_post(put_post_endpoint, created_post):
+def test_put_object(put_object_endpoint, created_object):
     data = {
         "name": "Anna",
         "data": {
             "data": "test_four"
         }
     }
-    put_post_endpoint.update_a_post(data, created_post)
+    put_object_endpoint.update_object(data, created_object)
     with allure.step('Update a post'):
-        assert put_post_endpoint.response.status_code == 200
-        assert put_post_endpoint.json['name'] == data["name"]
+        assert put_object_endpoint.response.status_code == 200
+        assert put_object_endpoint.json['name'] == data["name"]
 
 
 @allure.feature('Posts')
@@ -108,21 +108,21 @@ def test_put_a_post(put_post_endpoint, created_post):
 @allure.title('Checking response for updating a post partially')
 @pytest.mark.critical
 @pytest.mark.critical
-def test_patch_a_post(patch_post_endpoint, created_post):
+def test_patch_object(patch_object_endpoint, created_object):
     data = {
         "name": "new_test_one"
     }
-    patch_post_endpoint.update_a_part_of_post(data, created_post)
+    patch_object_endpoint.update_a_part_of_object(data, created_object)
     with allure.step('Partually update a post'):
-        assert patch_post_endpoint.response.status_code == 200
-        assert patch_post_endpoint.json['name'] == data["name"]
+        assert patch_object_endpoint.response.status_code == 200
+        assert patch_object_endpoint.json['name'] == data["name"]
 
 
 @allure.feature('Posts')
 @allure.story('Delete a post')
 @allure.title('Checking response for deleting a post')
 @pytest.mark.critical
-def test_delete_a_post(delete_post_endpoint, created_post):
-    delete_post_endpoint.delete_a_post(created_post)
+def test_delete_a_post(delete_object_endpoint, created_object):
+    delete_object_endpoint.delete_object(created_object)
     with allure.step('Delete a post'):
-        assert delete_post_endpoint.response.status_code == 200
+        assert delete_object_endpoint.response.status_code == 200
