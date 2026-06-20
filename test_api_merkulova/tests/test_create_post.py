@@ -42,9 +42,9 @@ INVALID_DATA = (
 @pytest.mark.critical
 @pytest.mark.parametrize("data", VALID_DATA)
 def test_create_object(create_object_endpoint, data):
-    create_object_endpoint.new_post(body=data)
+    create_object_endpoint.new_object(body=data)
     with allure.step('Create a new post'):
-        assert create_object_endpoint.response.status_code == 200
+        create_object_endpoint.check_status_code(200)
         assert create_object_endpoint.json['name'] == data['name']
         assert create_object_endpoint.json['data'] == data['data']
         assert isinstance(create_object_endpoint.json['id'], int)
@@ -55,12 +55,12 @@ def test_create_object(create_object_endpoint, data):
 @allure.title('Check response for creating a post with invalid data')
 @pytest.mark.high
 @pytest.mark.parametrize("data", INVALID_DATA)
-def test_create_object_invalid_data(create_post_endpoint, data):
+def test_create_object_invalid_data(create_object_endpoint, data):
     print("\nDATA:", data)
     create_object_endpoint.new_object(body=data)
     print("STATUS:", create_object_endpoint.response.status_code)
     with allure.step('Create a new post with invalid data'):
-        assert create_object_endpoint.response.status_code == 400
+        create_object_endpoint.check_status_code(400)
         assert "id" not in create_object_endpoint.json
 
 
@@ -71,7 +71,7 @@ def test_create_object_invalid_data(create_post_endpoint, data):
 def test_get_all_objects(get_objects_endpoint, created_object):
     get_objects_endpoint.get_objects()
     with allure.step('Get all posts'):
-        assert get_objects_endpoint.response.status_code == 200
+        get_objects_endpoint.check_status_code(200)
         assert len(get_objects_endpoint.json) > 0
 
 
@@ -80,9 +80,9 @@ def test_get_all_objects(get_objects_endpoint, created_object):
 @allure.title('Check response for getting one post')
 @pytest.mark.critical
 def test_get_one_object(get_one_object_endpoint, created_object):
-    get_one_object_endpoint.get_one_post(created_object)
+    get_one_object_endpoint.get_one_object(created_object)
     with allure.step('Get one post by id'):
-        assert get_one_object_endpoint.response.status_code == 200
+        get_one_object_endpoint.check_status_code(200)
         assert get_one_object_endpoint.json["id"] == created_object
 
 
@@ -99,7 +99,7 @@ def test_put_object(put_object_endpoint, created_object):
     }
     put_object_endpoint.update_object(data, created_object)
     with allure.step('Update a post'):
-        assert put_object_endpoint.response.status_code == 200
+        put_object_endpoint.check_status_code(200)
         assert put_object_endpoint.json['name'] == data["name"]
 
 
@@ -114,7 +114,7 @@ def test_patch_object(patch_object_endpoint, created_object):
     }
     patch_object_endpoint.update_a_part_of_object(data, created_object)
     with allure.step('Partually update a post'):
-        assert patch_object_endpoint.response.status_code == 200
+        patch_object_endpoint.check_status_code(200)
         assert patch_object_endpoint.json['name'] == data["name"]
 
 
@@ -125,4 +125,4 @@ def test_patch_object(patch_object_endpoint, created_object):
 def test_delete_a_post(delete_object_endpoint, created_object):
     delete_object_endpoint.delete_object(created_object)
     with allure.step('Delete a post'):
-        assert delete_object_endpoint.response.status_code == 200
+        delete_object_endpoint.check_status_code(200)

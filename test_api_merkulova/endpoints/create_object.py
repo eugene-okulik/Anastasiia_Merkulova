@@ -1,7 +1,8 @@
 import requests
 
+from base_endpoint import BaseEndpoint
 
-class CreateObject:
+class CreateObject(BaseEndpoint):
     url = 'http://objapi.course.qa-practice.com/object'
     response = None
     json = None
