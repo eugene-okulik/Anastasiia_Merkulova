@@ -1,3 +1,0 @@
-Before test
-After test
-Testing completed

@@ -1,3 +1,0 @@
-Start test
-Before test
-After test
