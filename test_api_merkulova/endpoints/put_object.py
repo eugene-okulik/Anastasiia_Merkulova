@@ -1,6 +1,6 @@
 import requests
 
-from base_endpoint import BaseEndpoint
+from endpoints.base_endpoint import BaseEndpoint
 class PutObject(BaseEndpoint):
     url = 'http://objapi.course.qa-practice.com/object'
     response = None
