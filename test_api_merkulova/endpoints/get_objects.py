@@ -2,6 +2,7 @@ import requests
 
 from endpoints.base_endpoint import BaseEndpoint
 
+
 class GetObjects(BaseEndpoint):
     url = 'http://objapi.course.qa-practice.com/object'
     response = None
