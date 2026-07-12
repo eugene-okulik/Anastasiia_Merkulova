@@ -14,9 +14,8 @@ def create_object_endpoint():
     return CreateObject()
 
 
-
 @pytest.fixture
-def created_object(create_object_endpoint,delete_object_endpoint):
+def created_object(create_object_endpoint, delete_object_endpoint):
     body = {
         "name": "test_one",
         "data": {
