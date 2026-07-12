@@ -1,6 +1,5 @@
 import pytest
 
-import requests
 
 from endpoints.create_object import CreateObject
 from endpoints.get_objects import GetObjects
@@ -15,12 +14,9 @@ def create_object_endpoint():
     return CreateObject()
 
 
-def clear(post_id):
-    requests.delete(f'http://objapi.course.qa-practice.com/object/{post_id}')
-
 
 @pytest.fixture
-def created_object(create_object_endpoint):
+def created_object(create_object_endpoint,delete_object_endpoint):
     body = {
         "name": "test_one",
         "data": {
@@ -30,9 +26,9 @@ def created_object(create_object_endpoint):
         }
     }
     create_object_endpoint.new_object(body=body)
-    post_id = create_object_endpoint.json['id']
-    yield post_id
-    clear(post_id)
+    object_id = create_object_endpoint.json['id']
+    yield object_id
+    delete_object_endpoint.delete_object(object_id)
 
 
 @pytest.fixture

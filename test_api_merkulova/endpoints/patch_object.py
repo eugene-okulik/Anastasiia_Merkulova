@@ -9,10 +9,10 @@ class PatchObject(BaseEndpoint):
     json = None
     headers = {'Content-Type': 'application/json'}
 
-    def update_a_part_of_object(self, body, post_id, headers=None):
+    def update_a_part_of_object(self, body, object_id, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.patch(
-            f'{self.url}/{post_id}',
+            f'{self.url}/{object_id}',
             json=body,
             headers=headers
         )
