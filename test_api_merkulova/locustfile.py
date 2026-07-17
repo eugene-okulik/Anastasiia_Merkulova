@@ -57,9 +57,9 @@ class PostOneObject (HttpUser):
         object_id = response.json().get('id')
         if object_id:
             self.client.delete(
-            f'/object/{object_id}',
-            name="/object/[id]"
-        )
+                f'/object/{object_id}',
+                name="/object/[id]"
+            )
 
 
 class PutOneObject (HttpUser):
@@ -113,11 +113,10 @@ class PatchOneObject (HttpUser):
         )
         self.object_id = response.json().get('id')
 
-
     @task
     def patch_object(self):
         body = {
-            "name" : "patched_name"
+            "name": "patched_name"
         }
         self.client.patch(
             f'/object/{self.object_id}',
@@ -150,6 +149,6 @@ class DeleteOneObject (HttpUser):
         object_id = response.json().get('id')
         if object_id:
             self.client.delete(
-            f'/object/{object_id}',
-            name="/object/[id]",
-        )
+                f'/object/{object_id}',
+                name="/object/[id]",
+            )
