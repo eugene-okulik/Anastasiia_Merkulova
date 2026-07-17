@@ -18,7 +18,7 @@ class GetOneObject (HttpUser):
             "data" : {
                 "test" : "one"
             }
-        }Й
+        }
         response = self.client.post(
             '/object',
             json=body
@@ -36,7 +36,8 @@ class GetOneObject (HttpUser):
 
     def on_stop(self):
         self.client.delete(
-            f"/object/{self.object_id}",
+            f'/object/{self.object_id}',
+            name="/object/[id]"
         )
 
 
@@ -57,7 +58,8 @@ class PostOneObject (HttpUser):
         object_id = response.json().get('id')
         if object_id:
             self.client.delete(
-            f"/object/{object_id}",
+            f'/object/{object_id}',
+            name="/object/[id]"
         )
 
 
@@ -93,7 +95,8 @@ class PutOneObject (HttpUser):
 
     def on_stop(self):
         self.client.delete(
-            f"/object/{self.object_id}",
+            f'/object/{self.object_id}',
+            name="/object/[id]"
         )
 
 
@@ -128,7 +131,8 @@ class PatchOneObject (HttpUser):
 
     def on_stop(self):
         self.client.delete(
-            f"/object/{self.object_id}",
+            f'/object/{self.object_id}',
+            name='/object/[id]'
         )
 
 
@@ -152,5 +156,5 @@ class DeleteOneObject (HttpUser):
         if object_id:
             self.client.delete(
             f'/object/{object_id}',
-            headers = {'Content-Type': 'application/json'},
+            name="/object/[id]",
         )
