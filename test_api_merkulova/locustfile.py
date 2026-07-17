@@ -1,12 +1,13 @@
 from locust import task, HttpUser
 
+
 class GetAllObjects (HttpUser):
 
     @task
     def get_all_objects(self):
         self.client.get(
             '/object',
-            headers = {'Content-Type': 'application/json'}
+            headers={'Content-Type': 'application/json'}
         )
 
 
@@ -14,9 +15,9 @@ class GetOneObject (HttpUser):
 
     def on_start(self):
         body = {
-            "name" : "locust_test",
-            "data" : {
-                "test" : "one"
+            "name": "locust_test",
+            "data": {
+                "test": "one"
             }
         }
         response = self.client.post(
@@ -25,14 +26,12 @@ class GetOneObject (HttpUser):
         )
         self.object_id = response.json().get('id')
 
-
     @task
     def get_one_object(self):
         self.client.get(
             f'/object/{self.object_id}',
-            headers = {'Content-Type': 'application/json'}
+            headers={'Content-Type': 'application/json'}
         )
-
 
     def on_stop(self):
         self.client.delete(
@@ -46,14 +45,14 @@ class PostOneObject (HttpUser):
     @task
     def create_object(self):
         body = {
-            "name" : "create_object",
-            "data" : {
-                "test" : "one"
+            "name": "create_object",
+            "data": {
+                "test": "one"
             }
         }
         response = self.client.post(
-            f'/object',
-            json = body
+            '/object',
+            json=body
         )
         object_id = response.json().get('id')
         if object_id:
@@ -78,7 +77,6 @@ class PutOneObject (HttpUser):
         )
         self.object_id = response.json().get('id')
 
-
     @task
     def put_object(self):
         body = {
@@ -102,7 +100,6 @@ class PutOneObject (HttpUser):
 
 class PatchOneObject (HttpUser):
 
-
     def on_start(self):
         body = {
             "name": "locust_test",
@@ -124,10 +121,9 @@ class PatchOneObject (HttpUser):
         }
         self.client.patch(
             f'/object/{self.object_id}',
-            headers = {'Content-Type': 'application/json'},
-            json = body
+            headers={'Content-Type': 'application/json'},
+            json=body
         )
-
 
     def on_stop(self):
         self.client.delete(
@@ -137,7 +133,6 @@ class PatchOneObject (HttpUser):
 
 
 class DeleteOneObject (HttpUser):
-
 
     @task
     def delete_object(self):
