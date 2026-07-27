@@ -97,7 +97,6 @@ def test_full_element_fields(driver):
         submit_button
     )
 
-
     submit_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable(
             (By.ID, 'submit')
