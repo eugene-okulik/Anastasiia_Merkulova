@@ -6,12 +6,14 @@ from selenium.webdriver.support.ui import Select
 
 import pytest
 
+
 @pytest.fixture
 def driver():
     driver = webdriver.Chrome()
     driver.maximize_window()
     yield driver
     driver.quit()
+
 
 def test_choose_language(driver):
     language = 'Python'

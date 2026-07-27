@@ -5,12 +5,14 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import pytest
 
+
 @pytest.fixture
 def driver():
     driver = webdriver.Chrome()
     driver.maximize_window()
     yield driver
     driver.quit()
+
 
 def test_show_text(driver):
     driver.get('https://the-internet.herokuapp.com/dynamic_loading/2')

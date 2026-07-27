@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import pytest
 
+
 @pytest.fixture
 def driver():
     driver = webdriver.Chrome()
@@ -19,6 +20,6 @@ def test_find_element(driver):
     search_input = driver.find_element(By.ID, "id_text_string")
     search_input.send_keys("Buttons")
     search_input.send_keys(Keys.ENTER)
-    result = WebDriverWait(driver,10) .until(EC.visibility_of_element_located((By.ID, "result-text")))
+    result = WebDriverWait(driver, 10) .until(EC.visibility_of_element_located((By.ID, "result-text")))
     print(result.text)
     assert result.text == "Buttons"
