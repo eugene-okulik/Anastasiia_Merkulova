@@ -108,4 +108,3 @@ def test_full_element_fields(driver):
         "arguments[0].click();",
         submit_button
     )
-

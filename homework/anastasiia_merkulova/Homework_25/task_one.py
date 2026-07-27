@@ -22,5 +22,3 @@ def test_find_element(driver):
     result = WebDriverWait(driver,10) .until(EC.visibility_of_element_located((By.ID, "result-text")))
     print(result.text)
     assert result.text == "Buttons"
-
-
