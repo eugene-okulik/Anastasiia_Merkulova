@@ -78,8 +78,16 @@ def test_full_element_fields(driver):
         state_input
     )
 
-    state_input.send_keys('Haryana')
+    state_input.send_keys('Uttar Pradesh')
     state_input.send_keys(Keys.ENTER)
+
+    city_input = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located(
+            (By.ID, 'react-select-4-input')
+        )
+    )
+    city_input.send_keys('Agra')
+    city_input.send_keys(Keys.ENTER)
 
     submit_button = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located(
@@ -97,13 +105,10 @@ def test_full_element_fields(driver):
         submit_button
     )
 
-    submit_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable(
-            (By.ID, 'submit')
+    final_table = WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located(
+            (By.CLASS_NAME, 'table-responsive')
         )
     )
 
-    driver.execute_script(
-        "arguments[0].click();",
-        submit_button
-    )
+    print(final_table.text)
