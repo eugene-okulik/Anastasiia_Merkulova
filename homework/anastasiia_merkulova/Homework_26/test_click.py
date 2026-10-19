@@ -47,6 +47,4 @@ def test_check_click(driver):
     )
     actual_name = popup_item.text.strip()
 
-    assert expected_name in actual_name, (
-        f'Ожидали товар {expected_name!r}, получили {actual_name!r}'
-    )
+    assert expected_name in actual_name
